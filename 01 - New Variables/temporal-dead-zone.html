@@ -6,9 +6,34 @@
 </head>
 <body>
 <script>
-  console.log(pizza);
-  const pizza = 'Deep Dish 🍕🍕🍕';
 
+  console.log(myvar); //undefined, myvar hoised
+  var myvar = 'abc'
+
+  console.log(mylet); //Uncaught ReferenceError: mylet is not defined
+  let mylet = 'Deep';
+
+
+  // let and const have two broad differences from var:
+
+  //1. They are block scoped.
+  //2. Accessing a var before it is declared has the result undefined; accessing a let or const before it is declared throws ReferenceError
+
+  //It appears from above example that let declarations (and const, which works the same way) may not be hoisted, since mylet does not appear to exist before it is assigned a value.
+  //That is not the case, however, let and const are hoisted (like var, class and function), but there is a period between entering scope and being declared where they cannot be accessed. 
+  //This period is the temporal dead zone (TDZ).
+
+  //The TDZ ends when mylet is declared, rather than assigned
+
+
+  let x = 'outer value';
+  (function() {
+    // start TDZ for x
+    console.log(x); //Uncaught ReferenceError: x is not defined
+    let x = 'inner value'; // declaration ends TDZ for x
+  }());
+
+  //Accessing x in the inner scope still causes a ReferenceError. If let were not hoisted, it would log outer value
 </script>
 </body>
 </html>
