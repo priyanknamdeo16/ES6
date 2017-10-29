@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Iterables & Looping</title>
+</head>
+<body>
+ 
+<script>
+    
+
+    function Person(name) {
+        this.name = name;
+    }
+
+    var p = new Person('priyank');
+
+    Person.prototype.getName = function () {
+        console.log(this.name);
+    };
+
+    p.getName();
+
+    function Employee(name, salary) {
+        Person.call(this, name);
+        this.salary = salary;
+    }
+
+    //reset Employee prototype as 
+    Employee.prototype = Object.create(Person.prototype);
+    Employee.prototype.constructor = Employee;
+    
+    Employee.prototype.getNameAndSalary = function() {
+        console.log(this.name + this.salary);
+    };
+
+    var e = new Employee('neha', 100);
+
+    e.getNameAndSalary();
+
+    
+    //test
+    function fn() {
+
+    }
+debugger;
+</script>
+</body>
+</html>

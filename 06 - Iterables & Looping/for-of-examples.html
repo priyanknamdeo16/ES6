@@ -16,27 +16,58 @@
   <p>Hi I'm p 09</p>
   <p>Hi I'm p 10</p>
 <script>
+
+  //example 1
   const cuts = ['Chuck', 'Brisket', 'Shank', 'Short Rib'];
 
-  // for (const [i, cut] of cuts.entries()) {
-  //   console.log(`${cut} is the ${i + 1} item`);
-  // }
+  //The entries() method returns a new Array Iterator object that contains the key/value pairs for each index in the array
+  for (const [i, cut] of cuts.entries()) {
+    console.log(`${cut} is the ${i + 1} item`);
+  }
 
-  // function addUpNumbers() {
-  //   let total = 0;
-  //   for (const num of arguments) {
-  //     total += num;
-  //   }
-  //   console.log(total);
-  //   return total;
-  // }
+  cuts.priyank = 'a';
 
-  // addUpNumbers(10,23,52,34,12,13,123);
+  //all props yield by iterator, will not print priyank
+  for (const c of cuts) {
+    console.log(`${c} is the item`); //Chuck is the item etc
+  }
 
-  // const name = 'Wes Bos';
-  // for (const char of name) {
-  //   console.log(char);
-  // }
+ //all enumerable props would be printed 
+  for(const cut in cuts) {
+    console.log('for in :' + cut);//0,1,2,3,priyank etc
+  }
+  // for in :0
+  // for in :1
+  // for in :2
+  // for in :3
+  // for in :priyank
+
+  //Example - 2
+  var a = ['a', 'b', 'c'];
+  var iterator = a.entries();
+
+  console.log(iterator.next().value); // [0, 'a']
+  console.log(iterator.next().value); // [1, 'b']
+  console.log(iterator.next().value); // [2, 'c']
+
+  //Example - 3
+  function addUpNumbers() {
+    let total = 0;
+    for (const num of arguments) {//arguments is also an iterator
+      total += num;
+    }
+    console.log(total);
+    return total;
+  }
+
+  addUpNumbers(10,23,52,34,12,13,123);
+
+  //example - iterate of string iterator
+  const name = 'Wes Bos';
+  for (const char of name) {
+    
+    console.log(char);
+  }
 
   const ps = document.querySelectorAll('p');
   for (const paragraph of ps) {
